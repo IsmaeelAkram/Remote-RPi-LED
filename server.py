@@ -1,13 +1,13 @@
 import socket
 
-# from gpiozero import LED
+from gpiozero import LED
 from dotenv import load_dotenv
 import os
 import log
 
 load_dotenv()
 
-# led = LED(17)
+led = LED(17)
 port = int(os.getenv("SERVER_PORT") or 6352)
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -33,10 +33,10 @@ while True:
 
         log.info("Received " + msg)
         if msg == "on":
-            # led.on()
+            led.on()
             log.info("Turned LED on")
         elif msg == "off":
-            # led.off()
+            led.off()
             log.info("Turned LED off")
 
     clientsocket.close()
