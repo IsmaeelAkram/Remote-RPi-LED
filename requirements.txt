@@ -1,0 +1,3 @@
+gpiozero
+pychalk
+python-dotenv
