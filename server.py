@@ -1,9 +1,15 @@
 import socket
 
-from gpiozero import LED
+from gpiozero import Device, LED
 from dotenv import load_dotenv
 import os
+import sys
 import log
+
+if len(sys.argv) > 1 and sys.argv[1] == "dev":
+    from gpiozero.pins.mock import MockFactory
+
+    Device.pin_factory = MockFactory()
 
 load_dotenv()
 
