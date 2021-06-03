@@ -8,7 +8,7 @@ import log
 load_dotenv()
 
 # led = LED(17)
-port = int(os.getenv("PORT"))
+port = int(os.getenv("SERVER_PORT") or 6352)
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -24,3 +24,20 @@ log.good("Listening...")
 while True:
     clientsocket, address = s.accept()
     log.info(f"Connection from {address[0]} has been established.")
+
+    while True:
+        msg = clientsocket.recv(1024).decode("utf-8")
+
+        if not msg:
+            break
+
+        log.info("Received " + msg)
+        if msg == "on":
+            # led.on()
+            log.info("Turned LED on")
+        elif msg == "off":
+            # led.off()
+            log.info("Turned LED off")
+
+    clientsocket.close()
+    log.info("Closed connection from " + address[0])

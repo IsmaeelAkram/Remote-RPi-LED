@@ -1,3 +1,4 @@
 gpiozero
 pychalk
 python-dotenv
+pynput
